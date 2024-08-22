@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
     const menuList = [
@@ -19,10 +20,12 @@ const Menu = () => {
         <div className="nav-wrap">
             <div className="login-button">
                 <FontAwesomeIcon icon={faUser} />
-                <span>로그인</span>
+                <Link to="/login">로그인</Link>
             </div>
             <div className="logo">
-                <img src="/logo-hnm.png" alt="HnM" width="50" />
+                <Link to="/">
+                    <img src="/logo-hnm.png" alt="HnM" width="50" />
+                </Link>
             </div>
             <div className="menu">
                 <ul>

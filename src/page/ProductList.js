@@ -15,6 +15,7 @@ const ProductList = () => {
     useEffect(() => {
         getProducts();
     }, []);
+
     return (
         <Container>
             <Row>

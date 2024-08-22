@@ -1,3 +1,26 @@
+html,
+body,
+#root,
+.body-wrap {
+    height: 100%;
+}
+a {
+    text-decoration: none;
+    color: #222;
+}
+a:hover {
+    font-weight: 600;
+    color: #ba2929;
+}
+.body-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.content-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
 .nav-wrap {
     padding: 20px;
 }
@@ -51,14 +74,17 @@
 .product {
     margin-bottom: 50px;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .product img {
-    /* width: 300px; */
     margin-bottom: 10px;
+}
+
+.product {
     transition: all 0.2s linear;
 }
 
-.product img:hover {
+.product:hover {
     transform: scale(1.05);
 }
