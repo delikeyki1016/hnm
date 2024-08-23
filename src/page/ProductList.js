@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 const ProductList = () => {
     const [productList, setProductList] = useState([]);
 
-    const [query, setQuery] = useSearchParams();
+    const [query, setQuery] = useSearchParams(); // eslint-disable-line no-unused-vars
 
     const getProducts = async () => {
         let searchQuery = query.get("q") || ""; // 쿼리값이 없는 경우는 "" 빈값을 넣어줌
