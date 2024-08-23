@@ -14,7 +14,7 @@ import PrivateRoute from "./route/PrivateRoute";
 // 5. 상품을 검색할 수 있다.
 
 function App() {
-    const [authenticate, setAuthenticate] = useState(false);
+    const [authenticate, setAuthenticate] = useState(false); // true이면 로그인이 된 상태(로그아웃을 보여줘야함), false면 로그인이 안된상태(로그인을 보여줘야함)
 
     useEffect(() => {
         console.log("authenticate?", authenticate);
@@ -22,7 +22,10 @@ function App() {
 
     return (
         <div className="body-wrap">
-            <Menu />
+            <Menu
+                authenticate={authenticate}
+                setAuthenticate={setAuthenticate}
+            />
             <div className="content-wrap">
                 <Routes>
                     <Route path="/" element={<ProductList />} />

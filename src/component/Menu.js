@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faCircleRight } from "@fortawesome/free-regular-svg-icons";
+import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
+
 import { useNavigate } from "react-router-dom";
 
-const Menu = () => {
+const Menu = ({ authenticate, setAuthenticate }) => {
+    console.log("메뉴의로그인상태", authenticate);
     const menuList = [
         "여성",
         "남성",
@@ -18,13 +22,27 @@ const Menu = () => {
     ];
 
     const navigate = useNavigate();
+    const myMenuRef = useRef(null);
 
     const goToLogin = () => {
         navigate("/login");
     };
 
+    const goToLogOut = () => {
+        setAuthenticate(false);
+        navigate("/");
+    };
+
     const goToHome = () => {
         navigate("/");
+    };
+
+    const showMenu = () => {
+        myMenuRef.current.style.display = "block";
+    };
+
+    const hiddenMenu = () => {
+        myMenuRef.current.style.display = "none";
     };
 
     const search = (event) => {
@@ -40,7 +58,11 @@ const Menu = () => {
         <div className="nav-wrap">
             <div className="login-button" onClick={goToLogin}>
                 <FontAwesomeIcon icon={faUser} />
-                <span>로그인</span>
+                {authenticate ? (
+                    <span onClick={goToLogOut}>로그아웃</span>
+                ) : (
+                    <span onClick={goToLogin}>로그인</span>
+                )}
             </div>
             <div className="logo">
                 <img
@@ -51,11 +73,25 @@ const Menu = () => {
                 />
             </div>
             <div className="menu">
-                <ul>
-                    {menuList.map((menu) => (
-                        <li>{menu}</li>
-                    ))}
-                </ul>
+                <FontAwesomeIcon
+                    icon={faCircleRight}
+                    size="lg"
+                    className="mobile-menu"
+                    onClick={showMenu}
+                />
+                <div className="menu-list" ref={myMenuRef}>
+                    <ul>
+                        {menuList.map((menu) => (
+                            <li>{menu}</li>
+                        ))}
+                    </ul>
+                    <FontAwesomeIcon
+                        icon={faXmarkCircle}
+                        size="lg"
+                        className="close-menu"
+                        onClick={hiddenMenu}
+                    />
+                </div>
                 <div className="search">
                     <FontAwesomeIcon icon={faSearch} />
                     <input type="text" onKeyPress={(event) => search(event)} />

@@ -14,7 +14,7 @@ const ProductList = () => {
         let url = `https://my-json-server.typicode.com/delikeyki1016/hnm/products?q=${searchQuery}`;
         let response = await fetch(url);
         let data = await response.json();
-        // console.log(data);
+        console.log(data);
         setProductList(data);
     };
     useEffect(() => {
@@ -25,11 +25,17 @@ const ProductList = () => {
     return (
         <Container>
             <Row>
-                {productList.map((menu) => (
-                    <Col lg={3} md={4} sm={6}>
-                        <Card item={menu} />
-                    </Col>
-                ))}
+                {productList.length > 0 ? (
+                    productList.map((menu) => (
+                        <Col lg={3} md={4} sm={6}>
+                            <Card item={menu} />
+                        </Col>
+                    ))
+                ) : (
+                    <div style={{ textAlign: "center" }}>
+                        검색 결과가 없습니다.
+                    </div>
+                )}
             </Row>
         </Container>
     );

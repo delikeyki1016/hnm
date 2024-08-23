@@ -36,6 +36,7 @@ a:hover {
     display: flex;
     justify-content: center;
     margin: 10px;
+    cursor: pointer;
 }
 .menu {
     flex-direction: column;
@@ -44,13 +45,13 @@ a:hover {
     align-items: center;
 }
 
-.menu ul {
-    display: flex;
-    flex-wrap: wrap;
+.menu-list ul {
     list-style: none;
-    gap: 20px;
     padding-left: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .search {
@@ -104,6 +105,14 @@ a:hover {
     --bs-dropdown-min-width: 105px;
 }
 
+.mobile-menu,
+.close-menu {
+    display: none;
+}
+
+.login-box {
+    max-width: 500px;
+}
 @media (max-width: 766px) {
     .product-detail-img {
         justify-content: center;
@@ -111,5 +120,42 @@ a:hover {
     .product-detail-info {
         margin: 10px 0 30px;
         text-align: center;
+    }
+}
+
+@media (max-width: 575px) {
+    .menu-list {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 200px;
+        height: 100vh;
+        padding: 20px;
+        background-color: lightgray;
+        z-index: 2;
+    }
+    .menu-list ul {
+        flex-direction: column;
+    }
+    .mobile-menu {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        cursor: pointer;
+    }
+    .close-menu {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        margin-left: -25px;
     }
 }
