@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Badge from "react-bootstrap/Badge";
 
 const Card = ({ item }) => {
     // console.log(item);
@@ -14,8 +15,16 @@ const Card = ({ item }) => {
             <img src={item?.img} alt="" className="img-fluid" />
             <div>{item?.choice === true ? "Concious Choice" : ""}</div>
             <div>{item?.title}</div>
-            <div>{item?.price}</div>
-            <div>{item?.new === true ? "신제품" : ""}</div>
+            <div>￦{item?.price.toLocaleString()}</div>
+            <div>
+                {item?.new === true ? (
+                    <Badge pill bg="danger">
+                        New
+                    </Badge>
+                ) : (
+                    ""
+                )}
+            </div>
         </div>
     );
 };

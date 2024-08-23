@@ -88,3 +88,13 @@ a:hover {
 .product:hover {
     transform: scale(1.05);
 }
+
+.product-detail-img {
+    width: 400px;
+    object-fit: contain;
+    align-self: flex-start;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 105px;
+}
