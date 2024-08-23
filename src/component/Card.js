@@ -12,7 +12,7 @@ const Card = ({ item }) => {
 
     return (
         <div key={item.id} className="product" onClick={showDetail}>
-            <img src={item?.img} alt="" className="img-fluid" />
+            <img src={item?.img} alt={item?.title} className="img-fluid" />
             <div>{item?.choice === true ? "Concious Choice" : ""}</div>
             <div>{item?.title}</div>
             <div>￦{item?.price.toLocaleString()}</div>

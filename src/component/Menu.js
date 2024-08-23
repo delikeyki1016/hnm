@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
     const menuList = [
@@ -16,16 +16,39 @@ const Menu = () => {
         "원피스",
         "Sale",
     ];
+
+    const navigate = useNavigate();
+
+    const goToLogin = () => {
+        navigate("/login");
+    };
+
+    const goToHome = () => {
+        navigate("/");
+    };
+
+    const search = (event) => {
+        if (event.key === "Enter") {
+            // console.log("press!", event.key);
+            // 입력한 검색어를 읽어와서 url을 바꿔준다.
+            let keyword = event.target.value;
+            // console.log("키워드?", keyword);
+            navigate(`/?q=${keyword}`);
+        }
+    };
     return (
         <div className="nav-wrap">
-            <div className="login-button">
+            <div className="login-button" onClick={goToLogin}>
                 <FontAwesomeIcon icon={faUser} />
-                <Link to="/login">로그인</Link>
+                <span>로그인</span>
             </div>
             <div className="logo">
-                <Link to="/">
-                    <img src="/logo-hnm.png" alt="HnM" width="50" />
-                </Link>
+                <img
+                    src="/logo-hnm.png"
+                    alt="HnM"
+                    width="50"
+                    onClick={goToHome}
+                />
             </div>
             <div className="menu">
                 <ul>
@@ -35,7 +58,7 @@ const Menu = () => {
                 </ul>
                 <div className="search">
                     <FontAwesomeIcon icon={faSearch} />
-                    <input type="text" />
+                    <input type="text" onKeyPress={(event) => search(event)} />
                 </div>
             </div>
         </div>
