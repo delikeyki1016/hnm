@@ -7,7 +7,8 @@ import { productAction } from "../redux/actions/productAction";
 
 const ProductList = () => {
     // const [productList, setProductList] = useState([]);
-    const productList = useSelector((state) => state.productList);
+    // 컴바인된 리듀서에서 정의한 키값을 써줘야 함
+    const productList = useSelector((state) => state.product.productList);
 
     const [query, setQuery] = useSearchParams(); // eslint-disable-line no-unused-vars
 
