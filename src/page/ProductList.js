@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Card from "../component/Card";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productAction } from "../redux/actions/productAction";
 
 const ProductList = () => {
-    const [productList, setProductList] = useState([]);
+    // const [productList, setProductList] = useState([]);
+    const productList = useSelector((state) => state.productList);
 
     const [query, setQuery] = useSearchParams(); // eslint-disable-line no-unused-vars
 
-    const getProducts = async () => {
+    const dispatch = useDispatch();
+
+    const getProducts = () => {
         let searchQuery = query.get("q") || ""; // 쿼리값이 없는 경우는 "" 빈값을 넣어줌
         console.log("쿼리값은?", searchQuery);
-        let url = `https://my-json-server.typicode.com/delikeyki1016/hnm/products?q=${searchQuery}`;
-        let response = await fetch(url);
-        let data = await response.json();
-        console.log(data);
-        setProductList(data);
+        // let url = `https://my-json-server.typicode.com/delikeyki1016/hnm/products?q=${searchQuery}`;
+        // let response = await fetch(url);
+        // let data = await response.json();
+        // console.log(data);
+        // setProductList(data);
+        // ==> 위의 로직을 미들웨어에서 정의하고, 미들웨어에서 정의한 함수를 불러서 콜해줌
+        // 미들웨어를 거쳐서 리듀서로 간다.
+        dispatch(productAction.getProducts(searchQuery));
     };
     useEffect(() => {
         getProducts();
@@ -25,7 +33,7 @@ const ProductList = () => {
     return (
         <Container>
             <Row>
-                {productList.length > 0 ? (
+                {productList && productList.length > 0 ? (
                     productList.map((menu) => (
                         <Col lg={3} md={4} sm={6}>
                             <Card item={menu} />
