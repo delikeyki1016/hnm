@@ -6,9 +6,10 @@ import { faCircleRight } from "@fortawesome/free-regular-svg-icons";
 import { faXmarkCircle } from "@fortawesome/free-regular-svg-icons";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticateAction } from "../redux/actions/authenticateAction";
 
-const Menu = ({ authenticate, setAuthenticate }) => {
-    console.log("메뉴의로그인상태", authenticate);
+const Menu = () => {
     const menuList = [
         "여성",
         "남성",
@@ -24,13 +25,18 @@ const Menu = ({ authenticate, setAuthenticate }) => {
     const navigate = useNavigate();
     const myMenuRef = useRef(null);
 
+    const dispatch = useDispatch();
+
+    const authenticate = useSelector((state) => state.auth.authenticate);
+
     const goToLogin = () => {
         navigate("/login");
     };
 
     const goToLogOut = () => {
-        setAuthenticate(false);
-        navigate("/");
+        // setAuthenticate(false);
+        dispatch(authenticateAction.logout());
+        // navigate("/"); 로그아웃한 후 홈으로 가질 않네..
     };
 
     const goToHome = () => {

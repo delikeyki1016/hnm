@@ -5,4 +5,11 @@ function login(id, password) {
     };
 }
 
-export const authenticateAction = { login };
+function logout() {
+    return (dispatch, getState) => {
+        console.log("log-out success middleware");
+        dispatch({ type: "LOGOUT" });
+    };
+}
+
+export const authenticateAction = { login, logout };

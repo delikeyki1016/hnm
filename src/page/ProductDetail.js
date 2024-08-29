@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Col, Container, Dropdown, Row } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
+import { useDispatch, useSelector } from "react-redux";
+import { productAction } from "../redux/actions/productAction";
 
 const ProductDetail = () => {
     // const param = useParams();
@@ -9,14 +11,18 @@ const ProductDetail = () => {
     let { id } = useParams();
     console.log("id?", id);
 
-    const [product, setProduct] = useState(null);
+    // const [product, setProduct] = useState(null);
+    const product = useSelector((state) => state.product.selectedItem);
+
+    const dispatch = useDispatch();
 
     const getProductDetail = async () => {
-        let url = `https://my-json-server.typicode.com/delikeyki1016/hnm/products/${id}`;
-        let response = await fetch(url);
-        let data = await response.json();
-        console.log(data);
-        setProduct(data);
+        // let url = `https://my-json-server.typicode.com/delikeyki1016/hnm/products/${id}`;
+        // let response = await fetch(url);
+        // let data = await response.json();
+        // console.log(data);
+        // setProduct(data);
+        dispatch(productAction.getProductDetail(id));
     };
     // API 호출
     useEffect(() => {
