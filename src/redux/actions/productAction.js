@@ -6,6 +6,7 @@
 // 리턴하는 함수는 두개의 매개변수를 가져간다.(dispatch, getState ==> 현재의 state정보)
 // productList의 getProducts함수를 미들웨어 함수로 만들어보자
 
+import { productActions } from "../reducers/productReducer";
 // 액션 크리에이터 함수 정의
 function getProducts(searchQuery) {
     // dispatch, getState(현재의 상태값)
@@ -15,7 +16,9 @@ function getProducts(searchQuery) {
         let data = await response.json();
         console.log("미들웨어의 데이타", data);
         // 리듀서에 디스패치를 이용해 보냄
-        dispatch({ type: "GET_PRODUCT_SUCCESS", payload: { data } });
+        // dispatch({ type: "GET_PRODUCT_SUCCESS", payload: { data } });
+        // redux-toolkit 사용 시
+        dispatch(productActions.getAllProducts({ data }));
     };
 }
 
@@ -25,7 +28,9 @@ function getProductDetail(id) {
         let response = await fetch(url);
         let data = await response.json();
         console.log("디테일 미들웨어의 데이타", data);
-        dispatch({ type: "GET_DETAIL_SUCCESS", payload: { data } });
+        // dispatch({ type: "GET_DETAIL_SUCCESS", payload: { data } });
+        // redux-toolkit 사용 시
+        dispatch(productActions.getSingleProducts({ data }));
     };
 }
 

@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware } from "redux";
-import { thunk } from "redux-thunk";
+// import { createStore, applyMiddleware } from "redux";
+// import { thunk } from "redux-thunk";
 // redux devtool 사용하기
 // 크롬확장프로그램에서 redux devtool 추가,
 // 터미널 npm install @redux-devtools/extension 설치
@@ -11,16 +11,31 @@ import { thunk } from "redux-thunk";
 // redux-thunk는 action creator를 만들고 function(getState, dispatch를 매개변수로 갖는다)을 리턴함
 
 // 리듀서의 state를 바로바로 확인할 수 있는 개발자도구 툴
-import { composeWithDevTools } from "@redux-devtools/extension";
+// import { composeWithDevTools } from "@redux-devtools/extension";
 
 // import productReducer from "./reducers/productReducer";
-import rootReducer from "./reducers/index"; // "./reducers" 까지만 써줘도 index를 읽어옴
+// import rootReducer from "./reducers/index"; // "./reducers" 까지만 써줘도 index를 읽어옴
 
 // let store = createStore(productReducer, applyMiddleware(thunk));
 // 리듀서 파일이 여러개라면, 합친 리듀서를 만들어서 사용하자. rootReducer
-let store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+// let store = createStore(
+//     rootReducer,
+//     composeWithDevTools(applyMiddleware(thunk))
+// );
+
+// redux-toolkit 사용시에 configureStore import
+// ==> createStore를 쓸 때 combineReducer, thunk, applyMiddleware, componseWithDevTools를 써줘야 했는데,
+// 4개가 모두 자동으로 들어가있다.
+import { configureStore } from "@reduxjs/toolkit";
+import productReducer from "./reducers/productReducer";
+import authenticateReducer from "./reducers/authenticateReducer";
+
+const store = configureStore({
+    reducer: {
+        // 컴바인리듀서에서 정의한 객체를 써준다.
+        auth: authenticateReducer,
+        product: productReducer,
+    },
+});
 
 export default store;
