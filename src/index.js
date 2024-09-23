@@ -9,6 +9,7 @@ import store from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+    // store를 앱에 적용시킴 provider
     <Provider store={store}>
         <BrowserRouter>
             <App />

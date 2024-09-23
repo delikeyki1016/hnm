@@ -8,6 +8,7 @@ import { productAction } from "../redux/actions/productAction";
 const ProductList = () => {
     // const [productList, setProductList] = useState([]);
     // 컴바인된 리듀서에서 정의한 키값을 써줘야 함
+    // state.product.productList ==> product는 rootReducer에서 객체로 정의한 키값
     const productList = useSelector((state) => state.product.productList);
 
     const [query, setQuery] = useSearchParams(); // eslint-disable-line no-unused-vars
@@ -23,7 +24,7 @@ const ProductList = () => {
         // console.log(data);
         // setProductList(data);
         // ==> 위의 로직을 미들웨어에서 정의하고, 미들웨어에서 정의한 함수를 불러서 콜해줌
-        // 미들웨어를 거쳐서 리듀서로 간다.
+        // 미들웨어 함수를 불러 미들웨어를 거쳐서 리듀서로 간다.
         dispatch(productAction.getProducts(searchQuery));
     };
     useEffect(() => {

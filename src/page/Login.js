@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authenticateAction } from "../redux/actions/authenticateAction";
 
-const Login = ({ setAuthenticate }) => {
+const Login = () => {
     // 4. id,password 세팅
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");

@@ -24,13 +24,12 @@ a:hover {
 .nav-wrap {
     padding: 20px;
 }
-.login-button {
+.login-info {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 4px;
     font-size: 14px;
-    cursor: pointer;
 }
 .logo {
     display: flex;

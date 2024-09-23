@@ -3,6 +3,7 @@ let initialState = {
     selectedItem: null,
 };
 
+// 리듀서는 함수다. 파라미터 (state, action)
 function productReducer(state = initialState, action) {
     const { type, payload } = action;
     switch (type) {

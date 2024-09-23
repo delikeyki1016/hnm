@@ -27,7 +27,8 @@ const Menu = () => {
 
     const dispatch = useDispatch();
 
-    const authenticate = useSelector((state) => state.auth.authenticate);
+    const loginInfo = useSelector((state) => state.auth);
+    console.log("loginInfo", loginInfo);
 
     const goToLogin = () => {
         navigate("/login");
@@ -62,12 +63,19 @@ const Menu = () => {
     };
     return (
         <div className="nav-wrap">
-            <div className="login-button" onClick={goToLogin}>
+            <div className="login-info">
                 <FontAwesomeIcon icon={faUser} />
-                {authenticate ? (
-                    <span onClick={goToLogOut}>로그아웃</span>
+                {loginInfo.authenticate ? (
+                    <>
+                        <span>{loginInfo.id}님 환영합니다.</span>
+                        <span role="button" onClick={goToLogOut}>
+                            로그아웃
+                        </span>
+                    </>
                 ) : (
-                    <span onClick={goToLogin}>로그인</span>
+                    <span role="button" onClick={goToLogin}>
+                        로그인
+                    </span>
                 )}
             </div>
             <div className="logo">
